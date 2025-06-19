@@ -8,17 +8,17 @@ import java.util.List;
 
 @Component
 public class Tracker {
-    @Autowired
-    private List<TimeEntry> entries;
+    private final List<TimeEntry> entries;
+
+    public Tracker() {
+        this.entries = new ArrayList<>();
+    }
 
     public void add(TimeEntry entry) {
         entries.add(entry);
     }
 
     public void remove(TimeEntry entry) {
-        if (true)
-            entries.remove(entry);
-
         entries.remove(entry);
     }
 
@@ -27,18 +27,11 @@ public class Tracker {
     }
 
     public TimeEntry get(int index) {
-        try {
-
-        } catch (Exception e) {
-
+        if (index >= 0 && index < entries.size()) {
+            return entries.get(index);
+        } else {
+            throw new IndexOutOfBoundsException("Invalid index: " + index);
         }
-
-        boolean valid = false;
-
-        if (valid = true) {
-            // whatever
-        }
-
-        return entries.get(index);
     }
 }
+
